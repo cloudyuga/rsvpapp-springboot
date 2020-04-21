@@ -3,7 +3,23 @@ RSVP applicaiton with springboot
 # Quick start
  ## Setting up in local system
  1. Clone the project or download the project into local system
- 2. Download and install jdk , maven and mongodb
+ 2. Download and install jdk(java 8 is recommended) , maven and mongodb
+    - For java installtion [click here](https://data-flair.training/blogs/install-java/)
+    - maven installtaion on ubuntu
+      - ```
+        $sudo apt update
+        $sudo apt install maven
+        $mvn -version
+        ```
+       - for windows [click here](https://howtodoinjava.com/maven/how-to-install-maven-on-windows/)
+    - You can configure mongodb with docker 
+      - open terminal and run mongo container 
+        ```
+        docker container run -d -p 27017:27017 --name mongodb mongo:3.3
+        ```
+      - for mongodb installation on local machine [click here](https://docs.mongodb.com/manual/administration/install-community/)
+    
+    
  3. Open mongodb server
  4. Set environment variables
     ```
@@ -42,7 +58,7 @@ RSVP applicaiton with springboot
    ```
  7. Application is running on http://localhost:8080 or http://yourdockeripaddress:8080
  
-# Docker-compose
+## Docker-compose
 1. Direct lauch the app with docker compose
 2. Navigate the terminal inside to the folder where docker-compose.yml file is located.and give command
   ```
