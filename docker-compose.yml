@@ -2,17 +2,15 @@ version: '3'
 services:
   mongodb:
     image: mongo:3.3
-    expose:
-      - "27017"
+    ports:
+      - "27017:27017"
     volumes:
       - db_data:/data/db
-    environment:
-      MONGODB_DATABASE: mongos
     networks:
       - rsvpnet
 
   spring:
-    image: shanureddy78/rsvpspring
+    image: shanureddy78/rsvpspringbootapp
     environment:
       MONGODB_HOST: mongodb
     ports:
