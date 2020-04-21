@@ -5,13 +5,13 @@ RSVP applicaiton with springboot
  1. Clone the project or download the project into local system
  2. Download and install jdk(java 8 is recommended) , maven and mongodb
     - For java installtion [click here](https://data-flair.training/blogs/install-java/)
-    - maven installtaion on ubuntu
+    - Maven installtaion on ubuntu
       - ```
         $sudo apt update
         $sudo apt install maven
         $mvn -version
         ```
-       - for windows [click here](https://howtodoinjava.com/maven/how-to-install-maven-on-windows/)
+       - for maven installation on windows [click here](https://howtodoinjava.com/maven/how-to-install-maven-on-windows/)
     - You can configure mongodb with docker 
       - open terminal and run mongo container 
         ```
