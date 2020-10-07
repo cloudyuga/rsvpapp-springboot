@@ -54,7 +54,7 @@ RSVP applicaiton with springboot
    ```
  6. Now run our container 
    ```
-   docker container run -d --network=<--mynetworkname--> -p 8080:8080 --mycontainer <--image name-->
+   docker container run -d --network=<--mynetworkname--> -p 8080:8080 --name mycontainer <--image name-->
    ```
  7. Application is running on http://localhost:8080 or http://yourdockeripaddress:8080
  
