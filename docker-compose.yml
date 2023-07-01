@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 services:
   mongodb:
     image: mongo:3.3
@@ -9,14 +9,26 @@ services:
     networks:
       - rsvpnet
 
-  spring:
-    image: shanureddy78/rsvpspringbootapp
+  rsvp_spring:
+    image: oshi36/rsvp_springboot:autoinstru
     environment:
-      MONGODB_HOST: mongodb
+      - MONGODB_HOST=mongodb
+      - OTEL_SERVICE_NAME=rsvp_spring
+      - OTEL_METRICS_EXPORTER=none
+      - OTEL_TRACES_EXPORTER=jaeger
+      - OTEL_EXPORTER_JAEGER_ENDPOINT=http://jaeger:14250
     ports:
-      - "8080:8080"
+      - "80:8080"
     networks:
       - rsvpnet
+  jaeger:
+    container_name: jaeger
+    image: jaegertracing/all-in-one:latest
+    ports:
+      - "30000:16686"
+      - "14250:14250"
+    networks:
+      - rsvpnet  
 
 networks:
   rsvpnet:
