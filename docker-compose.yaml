@@ -17,6 +17,7 @@ services:
       - MONGODB_HOST=mongodb
       - OTEL_METRICS_EXPORTER=otlp
       - OTEL_TRACES_EXPORTER=otlp
+      - OTEL_LOGS_EXPORTER=otlp
       - OTEL_EXPORTER_OTLP_ENDPOINT=http://collector:5555
       - OTEL_TRACES_SAMPLER=always_on
       - OTEL_IMR_EXPORT_INTERVAL=5000
@@ -28,7 +29,7 @@ services:
     
   
   collector:
-    image: otel/opentelemetry-collector:latest
+    image: otel/opentelemetry-collector-contrib:latest
     container_name: collector
     hostname: collector
     depends_on:
@@ -76,6 +77,13 @@ services:
       interval: 5s
       retries: 10
       test: wget --no-verbose --tries=1 --spider http://localhost:9090/status || exit 1 
+   
+  loki:
+    image: grafana/loki:latest
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    
 
   grafana:
     image: grafana/grafana:9.2.2
