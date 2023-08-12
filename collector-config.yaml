@@ -12,7 +12,6 @@ processors:
 exporters:
   prometheus:
     endpoint: collector:6666
-    namespace: default
   otlp:
     endpoint: tempo:4317
     tls:

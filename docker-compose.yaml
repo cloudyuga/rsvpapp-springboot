@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 services:
 
   mongodb:
@@ -10,9 +10,6 @@ services:
     
   rsvp_spring:
     image: oshi36/rsvp_springboot:autoinstru
-    depends_on:
-      - collector
-      - mongodb
     environment:
       - MONGODB_HOST=mongodb
       - OTEL_METRICS_EXPORTER=otlp
@@ -32,14 +29,9 @@ services:
     image: otel/opentelemetry-collector-contrib:latest
     container_name: collector
     hostname: collector
-    depends_on:
-      tempo:
-        condition: service_healthy
-      prometheus:
-        condition: service_healthy
     command: ["--config=/etc/collector-config.yaml"]
     volumes:
-      - ./collector-config-local.yaml:/etc/collector-config.yaml
+      - ./collector-config.yaml:/etc/collector-config.yaml
     ports:
       - "5555:5555"
       - "6666:6666"
@@ -89,11 +81,6 @@ services:
     image: grafana/grafana:9.2.2
     container_name: grafana
     hostname: grafana 
-    depends_on:
-      tempo:
-        condition: service_healthy
-      prometheus:
-        condition: service_healthy
     volumes:
       - ./o11y-backend/grafana-bootstrap.ini:/etc/grafana/grafana.ini
       - ./o11y-backend/grafana-datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
@@ -108,7 +95,6 @@ services:
       retries: 10
       test: wget --no-verbose --tries=1 --spider http://localhost:30000 || exit 1 
 
-  
-    
+
 volumes:
   db_data:
