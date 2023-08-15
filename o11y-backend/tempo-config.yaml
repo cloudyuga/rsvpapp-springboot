@@ -2,9 +2,6 @@ server:
   http_listen_port: 3200
 
 distributor:
-  search_tags_deny_list:
-    - "instance"
-    - "version"
   receivers:
     jaeger:
       protocols:
@@ -34,13 +31,8 @@ compactor:
 storage:
   trace:
     backend: local
-    block:
-      bloom_filter_false_positive: .05
-      index_downsample_bytes: 1000
-      encoding: zstd
     wal:
       path: /tmp/tempo/wal
-      encoding: snappy
     local:
       path: /tmp/tempo/blocks
     pool:
@@ -48,4 +40,4 @@ storage:
       queue_depth: 10000
 
 overrides:
-  per_tenant_override_config: /etc/overrides.yaml
+  metrics_generator_processors: [service-graphs, span-metrics] # enables metrics generator
