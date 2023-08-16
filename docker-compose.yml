@@ -9,8 +9,8 @@ services:
     networks:
       - rsvpnet
 
-  spring:
-    image: shanureddy78/rsvpspringbootapp
+  rsvp_spring:
+    image: registry.cloudyuga.guru/library/rsvp_springboot:latest
     environment:
       MONGODB_HOST: mongodb
     ports:

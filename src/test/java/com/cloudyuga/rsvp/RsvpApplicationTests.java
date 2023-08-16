@@ -68,8 +68,8 @@ class RsvpApplicationTests {
         ModelAndView mv = new ModelAndView("profile");
         mv.addObject("LOGO","https://raw.githubusercontent.com/cloudyuga/rsvpapp/master/static/cloudyuga.png");
         mv.addObject("TEXT1","CloudYuga");
-        mv.addObject("TEXT2","Garage RSVP!");
-        mv.addObject("COMPANY","CloudYuga Technology Pvt. Ltd.");
+        mv.addObject("TEXT2","GarageRSVP!");
+        mv.addObject("COMPANY","CloudYugaTechnologyPvt.Ltd.");
         mv.addObject("LINK","http://www.meetup.com/cloudyuga/");
         if (System.getenv("MONGODB_HOST")==null)mv.addObject("hostname", "127.0.0.1");
         else mv.addObject("hostname",System.getenv("MONGODB_HOST"));
