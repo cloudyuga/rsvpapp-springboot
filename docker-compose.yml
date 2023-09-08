@@ -1,7 +1,7 @@
 version: '3'
 services:
   mongodb:
-    image: mongo:3.3
+    image: mongo:3.6
     ports:
       - "27017:27017"
     volumes:
@@ -10,11 +10,11 @@ services:
       - rsvpnet
 
   rsvp_spring:
-    image: registry.cloudyuga.guru/library/rsvp_springboot:latest
+    image: registry.cloudyuga.guru/library/rsvp_springboot:v1
     environment:
       MONGODB_HOST: mongodb
     ports:
-      - "8080:8080"
+      - "80:8080"
     networks:
       - rsvpnet
 
